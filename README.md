@@ -1,5 +1,7 @@
 <div align="center">
 
+<img src="./assets/whathead-logo.png" alt="Whathead" width="112" height="112" />
+
 # Whathead MCP
 
 **Run your entire paid-media stack from your AI client.**
@@ -8,6 +10,7 @@ Connect Claude, ChatGPT, Cursor, or any MCP client to Whathead and manage campai
 creatives, audiences, reporting, and server-side conversions across every major ad
 platform — in plain language, with a safety rail on every write.
 
+[![validate](https://github.com/SHAHINOOOO/whathead-mcp/actions/workflows/validate.yml/badge.svg)](https://github.com/SHAHINOOOO/whathead-mcp/actions/workflows/validate.yml)
 [![MCP](https://img.shields.io/badge/Model_Context_Protocol-compatible-6E56CF)](https://modelcontextprotocol.io)
 [![Transport](https://img.shields.io/badge/transport-Streamable_HTTP-1f6feb)](https://modelcontextprotocol.io)
 [![Auth](https://img.shields.io/badge/auth-OAuth_2.1_+_PKCE-2ea043)](./SECURITY.md)
@@ -15,6 +18,15 @@ platform — in plain language, with a safety rail on every write.
 [![Website](https://img.shields.io/badge/whathead.com-000)](https://whathead.com)
 
 [**Connect now**](#-install-for-your-ai-client) · [Platforms](./docs/platforms.md) · [Tools](./docs/tools.md) · [Safety](./docs/safety.md) · [Pricing](#-pricing)
+
+<br />
+
+<sub>Works with</sub><br />
+<img src="./assets/clients/claude.png" alt="Claude" height="30" />&nbsp;&nbsp;
+<img src="./assets/clients/chatgpt.webp" alt="ChatGPT" height="30" />&nbsp;&nbsp;
+<img src="./assets/clients/cursor.png" alt="Cursor" height="30" />&nbsp;&nbsp;
+<img src="./assets/clients/gemini.webp" alt="Gemini" height="30" />&nbsp;&nbsp;
+<img src="./assets/clients/n8n.webp" alt="n8n" height="30" />
 
 </div>
 
@@ -43,6 +55,24 @@ an explicit confirm. Nothing goes live without you saying yes.
 **20+ integrations** spanning advertising, analytics, attribution, e-commerce, CRM, and
 server-side conversions — with **1,400+ native ad-platform API endpoints** exposed across
 the deepest five.
+
+<div align="center">
+<img src="./assets/logos/meta.png" alt="Meta" height="34" />&nbsp;&nbsp;&nbsp;
+<img src="./assets/logos/google.png" alt="Google Ads" height="34" />&nbsp;&nbsp;&nbsp;
+<img src="./assets/logos/tiktok.png" alt="TikTok" height="34" />&nbsp;&nbsp;&nbsp;
+<img src="./assets/logos/snapchat.png" alt="Snapchat" height="34" />&nbsp;&nbsp;&nbsp;
+<img src="./assets/logos/amazon.png" alt="Amazon Ads" height="30" />&nbsp;&nbsp;&nbsp;
+<img src="./assets/logos/apple.png" alt="Apple Search Ads" height="34" />&nbsp;&nbsp;&nbsp;
+<img src="./assets/logos/x.png" alt="X" height="30" />&nbsp;&nbsp;&nbsp;
+<img src="./assets/logos/linkedin.png" alt="LinkedIn" height="30" />&nbsp;&nbsp;&nbsp;
+<img src="./assets/logos/reddit.webp" alt="Reddit" height="34" />&nbsp;&nbsp;&nbsp;
+<img src="./assets/logos/dv360.png" alt="DV360" height="34" />
+<br /><br />
+<img src="./assets/logos/ga4.png" alt="Google Analytics 4" height="30" />&nbsp;&nbsp;&nbsp;
+<img src="./assets/logos/gsc.png" alt="Search Console" height="32" />&nbsp;&nbsp;&nbsp;
+<img src="./assets/logos/gmb.webp" alt="Business Profile" height="32" />&nbsp;&nbsp;&nbsp;
+<img src="./assets/logos/adjust.png" alt="Adjust" height="26" />
+</div>
 
 | Category | Platforms |
 |---|---|
@@ -139,6 +169,18 @@ in [`server.json`](./server.json).
 - **Cross-Platform Transfer** — one-shot campaign migration between platforms.
 
 Browse the tool catalog in **[docs/tools.md](./docs/tools.md)**.
+
+## Skills & slash commands
+
+Ready-to-use [skills](./skills) and [slash commands](./commands) for the most common jobs —
+drop them into `~/.claude/skills/` or `~/.claude/commands/` and go:
+
+| Job | Skill | Command |
+|---|---|---|
+| Cut wasted spend | [`audit-wasted-spend`](./skills/audit-wasted-spend/SKILL.md) | `/wh-audit` |
+| Weekly report | [`weekly-report`](./skills/weekly-report/SKILL.md) | `/wh-report` |
+| Safe campaign launch | [`launch-campaign-safely`](./skills/launch-campaign-safely/SKILL.md) | `/wh-launch` |
+| Server-side conversions | [`setup-server-side-tracking`](./skills/setup-server-side-tracking/SKILL.md) | `/wh-capi` |
 
 ## Trust & security
 

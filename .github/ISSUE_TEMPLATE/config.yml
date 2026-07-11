@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Product support
+    url: mailto:support@whathead.com
+    about: Issues with the hosted service, a tool, or your account.
+  - name: Security disclosure
+    url: mailto:security@whathead.com
+    about: Report a vulnerability privately (see SECURITY.md).
+  - name: Website
+    url: https://whathead.com
+    about: Learn more about Whathead.

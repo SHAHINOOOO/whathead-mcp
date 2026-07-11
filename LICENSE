@@ -1,0 +1,17 @@
+Whathead MCP — Connection Documentation License
+
+Copyright (c) 2026 Whathead
+
+This repository contains public connection documentation and client configuration for the
+Whathead MCP service. The configuration snippets and documentation herein may be freely
+copied, modified, and used for the purpose of connecting to and integrating with the Whathead
+service.
+
+THE DOCUMENTATION AND CONFIGURATION ARE PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
+FOR A PARTICULAR PURPOSE, AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES, OR OTHER LIABILITY ARISING FROM, OUT OF, OR IN
+CONNECTION WITH THE DOCUMENTATION OR ITS USE.
+
+The Whathead name, logo, hosted service, and backend software are proprietary and are not
+licensed by this file. All rights reserved.

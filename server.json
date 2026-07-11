@@ -1,0 +1,17 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-07-09/server.schema.json",
+  "name": "com.whathead/whathead-mcp",
+  "description": "Manage paid media across Meta, Google, TikTok, Snapchat, Amazon, Apple Search Ads and 15+ more platforms — plus server-side conversions — from any MCP client.",
+  "version": "1.0.0",
+  "websiteUrl": "https://whathead.com",
+  "repository": {
+    "url": "https://github.com/SHAHINOOOO/whathead-mcp",
+    "source": "github"
+  },
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://whathead.com/mcp"
+    }
+  ]
+}

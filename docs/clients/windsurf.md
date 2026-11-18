@@ -6,7 +6,7 @@ Add the server to `~/.codeium/windsurf/mcp_config.json`:
 {
   "mcpServers": {
     "whathead": {
-      "serverUrl": "https://whathead.com/mcp"
+      "serverUrl": "https://www.whathead.com/mcp"
     }
   }
 }

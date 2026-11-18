@@ -1,0 +1,8 @@
+{
+  "servers": {
+    "whathead": {
+      "type": "http",
+      "url": "https://www.whathead.com/mcp"
+    }
+  }
+}

@@ -5,7 +5,7 @@
 3. Paste the URL:
 
    ```
-   https://whathead.com/mcp
+   https://www.whathead.com/mcp
    ```
 
 4. Complete the OAuth login in your browser.

@@ -7,7 +7,7 @@ connectors.
 2. Click **Add** → **Custom connector** (MCP).
 3. Enter:
    - **Name:** Whathead
-   - **URL:** `https://whathead.com/mcp`
+   - **URL:** `https://www.whathead.com/mcp`
 4. Authorize with OAuth.
 5. In a chat, enable the Whathead connector and ask it to work.
 

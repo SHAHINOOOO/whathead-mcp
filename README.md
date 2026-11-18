@@ -1,242 +1,210 @@
 <div align="center">
 
-<img src="./assets/whathead-logo.png" alt="Whathead" width="112" height="112" />
+<img src="https://www.whathead.com/logos/WhatheadLogo.png" alt="Whathead" width="96" height="96" />
 
 # Whathead MCP
 
-**Run your entire paid-media stack from your AI client.**
+**One remote MCP server for the ad platforms your media plan actually buys.**
 
-Connect Claude, ChatGPT, Cursor, or any MCP client to Whathead and manage campaigns,
-creatives, audiences, reporting, and server-side conversions across every major ad
-platform — in plain language, with a safety rail on every write.
+<!-- Badges. Uncomment the Glama badge once https://glama.ai/mcp/connectors/com.whathead/ads resolves. -->
+<!-- [![Whathead MCP connector](https://glama.ai/mcp/connectors/com.whathead/ads/badges/score.svg)](https://glama.ai/mcp/connectors/com.whathead/ads) -->
+[![MCP Registry](https://img.shields.io/badge/MCP_Registry-com.whathead%2Fads-6E56CF)](https://registry.modelcontextprotocol.io/v0.1/servers?search=com.whathead)
+[![Transport](https://img.shields.io/badge/transport-Streamable_HTTP-1f6feb)](#connect)
+[![Auth](https://img.shields.io/badge/auth-OAuth_2.1_%2B_PKCE-2ea043)](#safety-model)
+[![Writes](https://img.shields.io/badge/writes-dry--run_by_default-f0883e)](#safety-model)
 
-[![validate](https://github.com/SHAHINOOOO/whathead-mcp/actions/workflows/validate.yml/badge.svg)](https://github.com/SHAHINOOOO/whathead-mcp/actions/workflows/validate.yml)
-[![MCP](https://img.shields.io/badge/Model_Context_Protocol-compatible-6E56CF)](https://modelcontextprotocol.io)
-[![Transport](https://img.shields.io/badge/transport-Streamable_HTTP-1f6feb)](https://modelcontextprotocol.io)
-[![Auth](https://img.shields.io/badge/auth-OAuth_2.1_+_PKCE-2ea043)](./SECURITY.md)
-[![Writes](https://img.shields.io/badge/writes-dry--run_by_default-f0883e)](./docs/safety.md)
-[![Website](https://img.shields.io/badge/whathead.com-000)](https://whathead.com)
+`https://www.whathead.com/mcp`
 
-[**Connect now**](#-install-for-your-ai-client) · [Platforms](./docs/platforms.md) · [Tools](./docs/tools.md) · [Safety](./docs/safety.md) · [Pricing](#-pricing)
-
-<br />
-
-<sub>Works with</sub><br />
-<img src="./assets/clients/claude.png" alt="Claude" height="30" />&nbsp;&nbsp;
-<img src="./assets/clients/chatgpt.webp" alt="ChatGPT" height="30" />&nbsp;&nbsp;
-<img src="./assets/clients/cursor.png" alt="Cursor" height="30" />&nbsp;&nbsp;
-<img src="./assets/clients/gemini.webp" alt="Gemini" height="30" />&nbsp;&nbsp;
-<img src="./assets/clients/n8n.webp" alt="n8n" height="30" />
+[Connect](#connect) · [Platforms](#platforms-and-capabilities) · [Safety](#safety-model) · [Example prompts](#example-prompts) · [Pricing](#pricing) · [Docs](https://docs.whathead.com/ai-assistant?utm_source=github&utm_medium=mcp-readme)
 
 </div>
 
 ---
 
-## What this does
+## What it is
 
-Whathead is a hosted **Model Context Protocol** server. You connect it once to your AI
-client and get a typed, permissioned interface to the real marketing APIs of every
-platform you advertise on — no scripts, no CSV exports, no switching tabs.
+Whathead is an ad-operations workspace and remote MCP server for performance marketers and agencies. It connects Meta, Google Ads, TikTok, Snapchat, LinkedIn, Reddit, X, Microsoft Ads, DV360, Criteo, Apple Ads and Amazon Ads, plus GA4, Search Console and Shopify, so teams can build, edit, transfer, report on and monitor campaigns from one workspace or from Claude, ChatGPT and other MCP clients.
 
-Ask your assistant to:
+The MCP server is hosted by Whathead. You do not install or run anything: point your MCP client at the URL above, sign in with your Whathead account, and your assistant can work with the ad accounts your workspace has connected.
 
-- *"Audit wasted spend on the Meta account this month and pause the worst 3 ad sets."*
-- *"Clone my top Google Search campaign into a Performance Max campaign, keep it paused."*
-- *"Build a TikTok Smart+ campaign from these 4 videos and preview it before launch."*
-- *"Transfer this Meta campaign to Snapchat, resize the assets to vertical."*
-- *"Set up Meta CAPI for this pixel and route `Purchase` events server-side."*
-- *"Pull a 30-day cross-platform performance report into Google Sheets."*
+**What this repository contains:** the MCP Registry manifest (`server.json`), the Glama manifest (`glama.json`), client configuration examples, example prompts and documentation. **It does not contain the server's source code.** See [License](#license).
 
-Every read is live. Every **write starts as a dry run** and destructive actions require
-an explicit confirm. Nothing goes live without you saying yes.
+## Connect
 
-## Supported platforms
+You need a Whathead account on a plan that includes MCP connectors (see [Pricing](#pricing)) and at least one ad platform connected in your workspace.
 
-**20+ integrations** spanning advertising, analytics, attribution, e-commerce, CRM, and
-server-side conversions — with **1,400+ native ad-platform API endpoints** exposed across
-the deepest five.
+### Claude (claude.ai and Claude Desktop)
 
-<div align="center">
-<img src="./assets/logos/meta.png" alt="Meta" height="34" />&nbsp;&nbsp;&nbsp;
-<img src="./assets/logos/google.png" alt="Google Ads" height="34" />&nbsp;&nbsp;&nbsp;
-<img src="./assets/logos/tiktok.png" alt="TikTok" height="34" />&nbsp;&nbsp;&nbsp;
-<img src="./assets/logos/snapchat.png" alt="Snapchat" height="34" />&nbsp;&nbsp;&nbsp;
-<img src="./assets/logos/amazon.png" alt="Amazon Ads" height="30" />&nbsp;&nbsp;&nbsp;
-<img src="./assets/logos/apple.png" alt="Apple Search Ads" height="34" />&nbsp;&nbsp;&nbsp;
-<img src="./assets/logos/x.png" alt="X" height="30" />&nbsp;&nbsp;&nbsp;
-<img src="./assets/logos/linkedin.png" alt="LinkedIn" height="30" />&nbsp;&nbsp;&nbsp;
-<img src="./assets/logos/reddit.webp" alt="Reddit" height="34" />&nbsp;&nbsp;&nbsp;
-<img src="./assets/logos/dv360.png" alt="DV360" height="34" />
-<br /><br />
-<img src="./assets/logos/ga4.png" alt="Google Analytics 4" height="30" />&nbsp;&nbsp;&nbsp;
-<img src="./assets/logos/gsc.png" alt="Search Console" height="32" />&nbsp;&nbsp;&nbsp;
-<img src="./assets/logos/gmb.webp" alt="Business Profile" height="32" />&nbsp;&nbsp;&nbsp;
-<img src="./assets/logos/adjust.png" alt="Adjust" height="26" />
-</div>
+1. Open **Settings → Connectors → Add custom connector**.
+2. Name it `Whathead` and paste `https://www.whathead.com/mcp`.
+3. Click **Connect**, sign in to Whathead and approve access.
+4. In a chat, enable Whathead from the tools menu and ask a question about your accounts.
 
-| Category | Platforms |
+### Claude Code
+
+```bash
+claude mcp add --transport http whathead https://www.whathead.com/mcp
+```
+
+Then run `/mcp` inside Claude Code, choose `whathead` and complete the browser sign-in.
+
+### ChatGPT
+
+1. In **Settings → Apps & Connectors**, open **Advanced settings** and turn on **Developer mode** (required for custom MCP connectors on most plans).
+2. Create a connector with the URL `https://www.whathead.com/mcp` and OAuth authentication.
+3. Sign in to Whathead and approve access.
+4. Turn the connector on in each chat where you want to use it. The toggle is per chat; if Whathead shows as unavailable, it is usually not enabled in that conversation.
+
+**Read-only connection.** For workspaces that only allow read-only tools, or accounts that should never change anything, use `https://www.whathead.com/mcp/read` instead. It uses the same sign-in, and every tool it lists is read-only (`readOnlyHint: true`): reporting, account and campaign reads for each platform. Any attempt to change data is refused before it reaches the ad platform.
+
+### Cursor
+
+Create a bearer token for Cursor on the [Whathead MCP connector page](https://www.whathead.com/connectors/mcp?utm_source=github&utm_medium=mcp-readme), then add this to `~/.cursor/mcp.json` (global) or `.cursor/mcp.json` (project):
+
+```json
+{
+  "mcpServers": {
+    "whathead": {
+      "url": "https://www.whathead.com/mcp",
+      "headers": { "Authorization": "Bearer ${env:WHATHEAD_MCP_TOKEN}" }
+    }
+  }
+}
+```
+
+Keep the token in an environment variable, not in a committed file. You can restrict a token to specific ad accounts and tools when you create it.
+
+### VS Code (GitHub Copilot agent mode)
+
+Add to `.vscode/mcp.json`, or run **MCP: Add Server** from the Command Palette and choose HTTP:
+
+```json
+{
+  "servers": {
+    "whathead": {
+      "type": "http",
+      "url": "https://www.whathead.com/mcp"
+    }
+  }
+}
+```
+
+VS Code opens the Whathead sign-in the first time a tool is used.
+
+### Other clients (n8n, Manus, Antigravity, MCP Inspector)
+
+Any client that speaks Streamable HTTP can connect to `https://www.whathead.com/mcp`. Clients that support MCP OAuth discover the authorization server automatically from `https://www.whathead.com/.well-known/oauth-protected-resource`. Automation tools without an OAuth flow use a bearer token from the connector page. More configs are in [`examples/`](./examples).
+
+Full setup guide: [docs.whathead.com/ai-assistant/connect](https://docs.whathead.com/ai-assistant/connect?utm_source=github&utm_medium=mcp-readme)
+
+## Platforms and capabilities
+
+Verified against the Whathead codebase on 18 Nov 2026. "Native API actions" counts the platform API operations available through each gateway; your assistant discovers the exact inputs with `whathead_tool_help`.
+
+| Platform | Read and report | Build and edit (create, update, pause) | Native API actions | MCP gateway |
+|---|---|---|---|---|
+| Meta (Facebook, Instagram) | Yes | Yes, incl. lead forms and page posts | 528 | `meta_native_action` |
+| Google Ads | Yes | Yes (Google Ads API v23; actions flagged for confirmation) | 171 | `google_ads_native_action` |
+| TikTok | Yes | Yes | 496 | `tiktok_native_action` |
+| Snapchat | Yes | Yes, incl. lead forms and lead webhooks | 268 | `snapchat_native_action` |
+| LinkedIn | Yes | Yes, incl. campaign groups and lead gen | 287 | `linkedin_native_action` |
+| Reddit | Yes | Yes, incl. posts, lead gen and catalogs | 49 | `reddit_native_action` |
+| X | Yes | Yes | 186 | `x_ads_native_action` |
+| Microsoft Advertising | Yes | Yes (REST v13 campaign management, bulk, reporting) | 280 | `microsoft_ads_native_action` |
+| Display & Video 360 | Yes, incl. Bid Manager reporting | Yes | 173 | `dv360_native_action` |
+| Criteo Retail Media | Yes | Yes | 108 | `criteo_native_action` |
+| Apple Ads | Yes | Yes | 172 | `apple_ads_native_action` |
+| Amazon Ads (SP, SB, SD) | Yes | Yes | 188 | `amazon_native_action` |
+| Google Analytics 4 | Reports, async report tasks, metadata | Audience exports | 12 tools | `ga4_native_action` |
+| Google Search Console | Sites, sitemaps, URL inspection, search analytics | Submit and delete sitemaps | 16 | `google_search_console_native_action` |
+| Shopify | Connect a store in the workspace (products, orders, inventory, sales) | Not yet exposed as MCP tools | n/a | n/a |
+
+Also available through MCP: Google Tag Manager, Google Business Profile, Google Merchant Center, Klaviyo, Adjust, AppsFlyer, Microsoft Clarity and WooCommerce.
+
+**Cross-platform workflows**
+
+- **Campaign transfer.** `cross_platform_transfer` copies a full campaign tree (campaign, ad sets, ads, media) between Meta, TikTok and Snapchat, and from those into Google. It maps objectives, placements and creatives, and creates the copy paused by default. The transfer screen in the workspace also maps X, Reddit, LinkedIn and OpenAI Ads.
+- **One workspace, many accounts.** Agencies assign ad accounts to client workspaces and scope each token to the accounts it may touch.
+- **Monitoring (workspace).** The Anomaly Engine compares what is live with what was approved (objective, targeting, tracking, naming, budget) and flags pacing and performance anomalies for Meta, Snapchat, TikTok, X and DV360.
+
+What it does not do: it does not run campaigns on its own. Your assistant proposes; you approve.
+
+## Safety model
+
+Letting an AI touch live ad accounts needs guardrails that do not depend on the model behaving well.
+
+| Guardrail | How it works |
 |---|---|
-| **Ads (native, deep)** | Meta (Facebook + Instagram) · Google Ads · TikTok · Snapchat · Amazon Ads · Apple Search Ads |
-| **Ads** | X (Twitter) · LinkedIn · Reddit · Criteo Retail Media · Display & Video 360 |
-| **Analytics** | Google Analytics 4 · Google Search Console · Google Business Profile |
-| **Tag & tracking** | Google Tag Manager · Signal (server-side CAPI) |
-| **Attribution** | Adjust |
-| **E-commerce** | WooCommerce · Shopify · Salla |
-| **CRM** | Zoho CRM |
+| Dry run by default | Write tools default to `dry_run: true` and return the exact payload or diff they would send. Nothing changes until a call is made with `dry_run: false`. |
+| Explicit confirmation | Publishing and destructive actions also require `confirmed: true`. Google Ads actions carry a per-action confirmation flag. |
+| Paused by default | Cross-platform transfers create paused entities unless you choose to publish after confirmation. |
+| Idempotency | Writes accept an `idempotency_key`, so a retried call does not create duplicates. |
+| OAuth 2.1 | Authorization code with PKCE, refresh tokens and dynamic client registration. No API keys pasted into chats. |
+| Scopes | Nine scopes separate reading accounts, campaigns and reports from writing campaigns, exports, GTM and tracking. |
+| Allowlists | A connector token can be limited to specific ad accounts and tools. |
+| Annotations | Every tool declares `readOnlyHint`, `destructiveHint` and `openWorldHint`, so clients can ask before running writes. |
+| Rate limits and logs | Per-session rate limiting, and a recent-calls log per client on the connector page. |
+| Metering | Only successful live work counts against your plan. Drafts, dry runs and failed jobs do not. |
 
-> Native depth per platform (real API endpoints reachable): **Meta 528 · TikTok 377 ·
-> Snapchat 312 · Amazon 184 · Apple Search Ads 73.** Core operations are exposed as
-> first-class tools; the full long tail is reachable through one typed dispatcher per
-> platform, so your tool list stays clean.
+Security and data handling: [whathead.com/security-data](https://www.whathead.com/security-data?utm_source=github&utm_medium=mcp-readme) · Privacy policy: [whathead.com/privacy-policy](https://www.whathead.com/privacy-policy?utm_source=github&utm_medium=mcp-readme)
 
-See the full breakdown in **[docs/platforms.md](./docs/platforms.md)**.
+## Example prompts
 
-## Why Whathead
+Paste these into your client once Whathead is connected.
 
-- **Depth, not just breadth.** Near-complete native coverage of the Meta, Google, TikTok,
-  Snapchat, Amazon, and Apple Search Ads APIs — not a thin read-only wrapper.
-- **Cross-Platform Transfer.** Migrate a full campaign tree from one platform to another —
-  entities mapped, media re-uploaded, assets resized — in a single instruction.
-- **Signal — a built-in CDP.** Server-side Conversions API for Meta/Snap/TikTok plus lead
-  capture and routing to your CRM. Close the loop from ad click to conversion to CRM record.
-- **Preflight validation.** Before any launch, Whathead validates your campaign tree against
-  each platform's objective, budget, creative, and asset rules and tells you what's missing.
-- **Safe by construction.** `dry_run` on by default, `confirmed` required for destructive
-  writes, OAuth 2.1 + PKCE, per-scope permissions, and full audit logging.
-- **Works everywhere.** Claude, ChatGPT, Cursor, Codex, Windsurf, Gemini, Antigravity, n8n,
-  Manus — any MCP-compliant client.
+- "List my connected ad accounts by platform with currency, timezone and status."
+- "Compare spend, CPA and ROAS for Meta, TikTok and Snapchat over the last 14 days, by campaign."
+- "Find ad sets on Meta that spent more than 2x their target CPA in the last 7 days with no conversions. Show them, don't pause anything yet."
+- "Copy my best-performing Meta prospecting campaign to Snapchat as a paused draft. Show me the field mapping first."
+- "Check every active TikTok ad group for automatic placement and Smart+ settings, and list the ones that differ from manual placement."
+- "Pull last month's DV360 line item performance and flag line items pacing more than 20% behind."
+- "Build a Google Ads search campaign from this brief as a dry run and show me the payload."
+- "Which Search Console queries with more than 500 impressions in the last 28 days rank between positions 8 and 20?"
+- "Lower the daily budget of these three X campaigns by 15%. Dry run first."
 
-## See it in action
+More: [docs.whathead.com/ai-assistant/what-it-can-do](https://docs.whathead.com/ai-assistant/what-it-can-do?utm_source=github&utm_medium=mcp-readme) and [`examples/prompts.md`](./examples/prompts.md).
 
-```text
-You:  List my connected accounts, then show the 5 worst-CPA ad sets on Meta this week.
+## Pricing
 
-Whathead:  Connected: Meta (Naqi Ads, USD), Google Ads, TikTok, Snapchat…
-           Top 5 ad sets by CPA (last 7 days, Meta / Naqi):
-           1. "Retargeting – Broad"   CPA $41.20   spend $612   ↑ freq 6.1  ⚠ fatigue
-           2. …
+All plans include a 14-day free trial.
 
-You:  Pause #1 and #2.
+| Plan | Monthly | MCP access |
+|---|---|---|
+| Builder | $29 | No (visual builder, publishing, media plans, transfer) |
+| MCP Actions | $39 | Yes |
+| Operator Bundle | $65 | Yes, plus builder and client workspaces |
+| Agency | $249 | Yes, more seats and accounts, priority support |
 
-Whathead:  Dry run — will set 2 ad sets to PAUSED. Confirm to apply?
+Current limits and annual pricing: [whathead.com/pricing](https://www.whathead.com/pricing?utm_source=github&utm_medium=mcp-readme)
 
-You:  confirm
+## Docs and links
 
-Whathead:  ✅ Paused "Retargeting – Broad" and "Lookalike 3%". Audit logged.
-```
+- Connect your AI assistant: [docs.whathead.com/ai-assistant/connect](https://docs.whathead.com/ai-assistant/connect?utm_source=github&utm_medium=mcp-readme)
+- What the assistant can do: [docs.whathead.com/ai-assistant/what-it-can-do](https://docs.whathead.com/ai-assistant/what-it-can-do?utm_source=github&utm_medium=mcp-readme)
+- Platform tools: [docs.whathead.com/ai-assistant/platform-tools](https://docs.whathead.com/ai-assistant/platform-tools?utm_source=github&utm_medium=mcp-readme)
+- Cross-platform transfer: [docs.whathead.com/workflows/cross-platform-transfer](https://docs.whathead.com/workflows/cross-platform-transfer?utm_source=github&utm_medium=mcp-readme)
+- Free paid-media skills for Claude: [github.com/SHAHINOOOO/claude-paid-media-skills](https://github.com/SHAHINOOOO/claude-paid-media-skills)
+- Support: [whathead.com/support](https://www.whathead.com/support?utm_source=github&utm_medium=mcp-readme)
 
-## 🔌 Install for your AI client
+## In this repo
 
-The server is remote and hosted — there is nothing to run locally. Point your client at:
+- [`docs/clients/`](./docs/clients/): step-by-step setup for Claude Desktop, Claude Code, ChatGPT, Cursor, Windsurf, Codex CLI, Gemini CLI and n8n
+- [`docs/tools.md`](./docs/tools.md): the 25 gateways on `/mcp` and the read-only surface on `/mcp/read`
+- [`docs/safety.md`](./docs/safety.md): dry-run, confirmation and scopes
+- [`skills/`](./skills/) and [`commands/`](./commands/): Agent Skills and Claude Code slash commands
+- [`examples/`](./examples/): ready-to-paste client configs and example prompts
 
-```
-https://whathead.com/mcp
-```
+## Registry entries
 
-Your client walks you through a one-time OAuth login. Pick your client below:
-
-| Client | One-liner |
+| Where | Identifier |
 |---|---|
-| **Claude Code** | `claude mcp add --transport http whathead https://whathead.com/mcp` |
-| **Claude Desktop / Web** | Settings → Connectors → Add → paste `https://whathead.com/mcp` — [guide](./docs/clients/claude-desktop.md) |
-| **ChatGPT** (Pro/Business/Enterprise) | Settings → Connectors → Add custom connector → `https://whathead.com/mcp` — [guide](./docs/clients/chatgpt.md) |
-| **Cursor** | Add to `.cursor/mcp.json` — [guide](./docs/clients/cursor.md) |
-| **Codex CLI** | Add to `~/.codex/config.toml` — [guide](./docs/clients/codex-cli.md) |
-| **Windsurf** | Add to `mcp_config.json` — [guide](./docs/clients/windsurf.md) |
-| **Gemini CLI** | `gemini extensions install` — [guide](./docs/clients/gemini-cli.md) |
-| **n8n / Manus / other** | Connector token — [guide](./docs/clients/n8n.md) |
-
-Full walkthrough for every client: **[CONNECTING.md](./CONNECTING.md)**.
-
-The ready-to-copy MCP config lives in [`.mcp.json`](./.mcp.json), and the server manifest
-in [`server.json`](./server.json).
-
-## What you get
-
-- **Discovery** — list accounts, assets (pages, pixels, catalogs, apps), and workspace context.
-- **Campaign lifecycle** — create / read / update / pause / publish campaigns, ad sets, and
-  ads across every platform, with immutable-field guards.
-- **Native platform tools** — the real, documented endpoints for Meta, Google, TikTok,
-  Snapchat, Amazon, and Apple Search Ads.
-- **Creative & media** — upload media, browse libraries, generate AI creatives, and preview
-  ads before they publish.
-- **Audiences & targeting** — custom audiences, lookalikes, interest/keyword lookup, size
-  estimation.
-- **Reporting** — live cross-platform performance reports, async report tasks, and export to
-  CSV or Google Sheets.
-- **Signal (CDP)** — server-side CAPI setup, event validation, delivery attempts, quality,
-  and lead routing to Zoho CRM.
-- **Cross-Platform Transfer** — one-shot campaign migration between platforms.
-
-Browse the tool catalog in **[docs/tools.md](./docs/tools.md)**.
-
-## Skills & slash commands
-
-Ready-to-use [skills](./skills) and [slash commands](./commands) for the most common jobs —
-drop them into `~/.claude/skills/` or `~/.claude/commands/` and go:
-
-| Job | Skill | Command |
-|---|---|---|
-| Cut wasted spend | [`audit-wasted-spend`](./skills/audit-wasted-spend/SKILL.md) | `/wh-audit` |
-| Weekly report | [`weekly-report`](./skills/weekly-report/SKILL.md) | `/wh-report` |
-| Safe campaign launch | [`launch-campaign-safely`](./skills/launch-campaign-safely/SKILL.md) | `/wh-launch` |
-| Server-side conversions | [`setup-server-side-tracking`](./skills/setup-server-side-tracking/SKILL.md) | `/wh-capi` |
-
-## Trust & security
-
-- **OAuth 2.1 with PKCE.** No API keys pasted into your client; tokens are scoped and rotate.
-- **Least privilege.** Every tool declares a scope (`read:campaigns`, `write:campaigns`, …);
-  connector tokens can be locked to specific tools, platforms, and accounts.
-- **Human-in-the-loop writes.** `dry_run` is the default; destructive actions require
-  `confirmed: true`.
-- **Encrypted credentials.** Platform tokens are stored encrypted server-side and never
-  returned to the client.
-- **Full audit trail.** Every tool call is traced and logged.
-
-Details and disclosure policy: **[SECURITY.md](./SECURITY.md)**.
-
-## How it works
-
-```text
-  Your AI client  ──HTTPS + OAuth──▶  Whathead MCP  ──▶  Whathead backend  ──▶  Ad platform APIs
-   (Claude, etc.)                     (this service)      (tokens, throttle,     (Meta, Google,
-                                                           normalization)         TikTok, …)
-```
-
-The MCP layer validates and shapes your request, then hands it to the Whathead backend,
-which owns credentials, rate-limiting, and platform-error normalization. **The MCP server
-never calls an ad-platform API directly** — a clean, auditable boundary.
-
-## Use cases
-
-- **Agencies** managing dozens of accounts across platforms from one chat.
-- **In-house teams** running audits, launches, and weekly reporting without leaving Claude.
-- **RevOps** wiring server-side conversions and CRM lead routing with Signal.
-- **Automation** — schedule reports and ops via n8n / Manus using connector tokens.
-
-## 💳 Pricing
-
-| Plan | Price | For |
-|---|---|---|
-| **Starter** | **$29 / mo** | Solo operators and single-brand accounts. |
-| **Growth** | **$79 / mo** | Agencies and multi-account, multi-platform teams. |
-
-See current plans and limits at **[whathead.com/pricing](https://whathead.com/pricing)**.
-
-## Contributing
-
-This repository holds the public connection docs, client configs, and skills for the
-Whathead MCP service. Issues and PRs that improve the docs or add client guides are welcome —
-see **[CONTRIBUTING.md](./CONTRIBUTING.md)**. For the hosted service itself, reach us via
-support below.
-
-## Support
-
-- 🌐 [whathead.com](https://whathead.com)
-- 📩 [support@whathead.com](mailto:support@whathead.com)
-- 🐛 [Open an issue](https://github.com/SHAHINOOOO/whathead-mcp/issues)
+| Official MCP Registry | `com.whathead/ads` ([server.json](./server.json)) |
+| Server Card | `https://www.whathead.com/mcp/server-card` |
+| AI Catalog | `https://www.whathead.com/.well-known/ai-catalog.json` |
+| OAuth protected resource metadata | `https://www.whathead.com/.well-known/oauth-protected-resource` |
 
 ## License
 
-See [LICENSE](./LICENSE). The configuration snippets and documentation here are free to use
-to connect to Whathead. The Whathead name, service, and backend are proprietary.
+The Whathead MCP server and the Whathead service are proprietary and hosted by Whathead. Using them is governed by the [Terms of Service](https://www.whathead.com/terms-of-service). This repository holds the registry manifest, documentation, configuration examples and example prompts, which you may copy, modify and use to connect to and integrate with Whathead (see [LICENSE](./LICENSE)). "Whathead" and the Whathead logo are trademarks of Whathead and are not covered by that license.
+
+Platform names are trademarks of their owners. Whathead is not affiliated with or endorsed by Meta, Google, TikTok, Snap, LinkedIn, Reddit, X, Microsoft, Criteo, Apple or Amazon.

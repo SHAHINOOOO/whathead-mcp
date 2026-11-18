@@ -16,7 +16,7 @@ Copy the token (shown once).
 
 ## 2. Point your automation at the endpoint
 
-- **Endpoint:** `https://whathead.com/mcp`
+- **Endpoint:** `https://www.whathead.com/mcp`
 - **Transport:** Streamable HTTP
 - **Auth header:** `Authorization: Bearer <connector-token>`
 

@@ -6,7 +6,7 @@ you point your client at the endpoint and complete a one-time OAuth login.
 **Endpoint**
 
 ```
-https://whathead.com/mcp
+https://www.whathead.com/mcp
 ```
 
 **Transport:** Streamable HTTP · **Auth:** OAuth 2.1 + PKCE
@@ -18,7 +18,7 @@ Per-client guides live in [`docs/clients/`](./docs/clients/). Quick reference be
 ## Claude Code
 
 ```bash
-claude mcp add --transport http whathead https://whathead.com/mcp
+claude mcp add --transport http whathead https://www.whathead.com/mcp
 ```
 
 Then run `/mcp` inside Claude Code and complete the login. See
@@ -26,12 +26,12 @@ Then run `/mcp` inside Claude Code and complete the login. See
 
 ## Claude Desktop & Web
 
-Settings → **Connectors** → **Add custom connector** → paste `https://whathead.com/mcp` →
+Settings → **Connectors** → **Add custom connector** → paste `https://www.whathead.com/mcp` →
 authorize. See [docs/clients/claude-desktop.md](./docs/clients/claude-desktop.md).
 
 ## ChatGPT (Pro / Business / Enterprise)
 
-Settings → **Connectors** → **Add** → custom MCP connector → `https://whathead.com/mcp`.
+Settings → **Connectors** → **Add** → custom MCP connector → `https://www.whathead.com/mcp`.
 See [docs/clients/chatgpt.md](./docs/clients/chatgpt.md).
 
 ## Cursor
@@ -41,7 +41,7 @@ Add to `.cursor/mcp.json` (project) or `~/.cursor/mcp.json` (global):
 ```json
 {
   "mcpServers": {
-    "whathead": { "type": "http", "url": "https://whathead.com/mcp" }
+    "whathead": { "type": "http", "url": "https://www.whathead.com/mcp" }
   }
 }
 ```
@@ -54,7 +54,7 @@ Add to `~/.codex/config.toml`:
 
 ```toml
 [mcp_servers.whathead]
-url = "https://whathead.com/mcp"
+url = "https://www.whathead.com/mcp"
 ```
 
 See [docs/clients/codex-cli.md](./docs/clients/codex-cli.md).
@@ -66,7 +66,7 @@ Add to `~/.codeium/windsurf/mcp_config.json`:
 ```json
 {
   "mcpServers": {
-    "whathead": { "serverUrl": "https://whathead.com/mcp" }
+    "whathead": { "serverUrl": "https://www.whathead.com/mcp" }
   }
 }
 ```

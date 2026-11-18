@@ -3,7 +3,7 @@
 **Add the server:**
 
 ```bash
-claude mcp add --transport http whathead https://whathead.com/mcp
+claude mcp add --transport http whathead https://www.whathead.com/mcp
 ```
 
 **Authorize:** run `/mcp` inside Claude Code and complete the OAuth login in your browser.
@@ -13,7 +13,7 @@ claude mcp add --transport http whathead https://whathead.com/mcp
 ```json
 {
   "mcpServers": {
-    "whathead": { "type": "http", "url": "https://whathead.com/mcp" }
+    "whathead": { "type": "http", "url": "https://www.whathead.com/mcp" }
   }
 }
 ```

@@ -3,6 +3,17 @@
 All notable changes to the Whathead MCP connection docs are recorded here. This project
 follows [Semantic Versioning](https://semver.org).
 
+## [1.1.1] — 2026-11-19
+
+### Changed
+- `server.json` moved to the 2025-12-11 registry schema and the name `com.whathead/ads`, with
+  both remotes (`/mcp` and the read-only `/mcp/read`). Published to the official MCP Registry.
+- Canonical endpoint is now `https://www.whathead.com/mcp` everywhere (the apex redirects).
+- README rewritten; `docs/tools.md` now lists the current 25 gateways and the read surface.
+
+### Added
+- `glama.json`, `examples/` client configs and prompts, manifest validation in CI.
+
 ## [1.1.0] — 2026-07-11
 
 ### Added

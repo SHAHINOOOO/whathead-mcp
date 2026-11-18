@@ -12,7 +12,7 @@ gemini extensions install https://github.com/SHAHINOOOO/whathead-mcp
 {
   "mcpServers": {
     "whathead": {
-      "httpUrl": "https://whathead.com/mcp"
+      "httpUrl": "https://www.whathead.com/mcp"
     }
   }
 }

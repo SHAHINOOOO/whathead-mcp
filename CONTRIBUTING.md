@@ -29,4 +29,4 @@ not the service source code.
 
 - Prefer short, task-oriented instructions over prose.
 - Every config snippet must be complete and copy-pasteable.
-- Use `https://whathead.com/mcp` as the canonical endpoint everywhere.
+- Use `https://www.whathead.com/mcp` as the canonical endpoint everywhere.

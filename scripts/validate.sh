@@ -16,11 +16,11 @@ done
 
 echo "==> Checking canonical endpoint"
 if grep -rInE "https?://[a-z.]*whathead\.com/mcp" --include=*.md --include=*.json . \
-   | grep -vE "https://whathead\.com/mcp" ; then
-  echo "  WARN: non-canonical endpoint URL found (expected https://whathead.com/mcp)"
+   | grep -vE "https://www\.whathead\.com/mcp" ; then
+  echo "  WARN: non-canonical endpoint URL found (expected https://www.whathead.com/mcp)"
   fail=1
 else
-  echo "  ok: all endpoints use https://whathead.com/mcp"
+  echo "  ok: all endpoints use https://www.whathead.com/mcp"
 fi
 
 echo "==> Checking relative markdown links resolve"

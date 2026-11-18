@@ -1,96 +1,59 @@
 # Tool catalog
 
-Whathead's tools are grouped by function. Read tools require a `read:*` scope; write tools
-default to `dry_run: true` and require a `write:*` scope. This page is a map — the exact tool
-list your client sees depends on your plan, connected platforms, and granted scopes.
+Whathead exposes two surfaces from the same OAuth server. The full, generated catalog of every
+operation lives at [docs.whathead.com/ai-assistant/tool-catalog](https://docs.whathead.com/ai-assistant/tool-catalog).
 
-## Discovery
-
-| Tool | Purpose |
+| Endpoint | What `tools/list` shows |
 |---|---|
-| `list_accounts` | List connected ad accounts across all platforms. |
-| `get_workspace_context` | User, company, billing, connected-platform summary, defaults. |
-| `list_workspace_assets` | Pages, profiles, pixels, apps, catalogs, custom conversions. |
+| `https://www.whathead.com/mcp` | 25 compact gateways. Each takes an `operation` plus that operation's `arguments`. Writes default to `dry_run: true`; live and destructive actions need explicit confirmation. |
+| `https://www.whathead.com/mcp/read` | 25 read-only tools (`readOnlyHint: true`): the 4 read-only gateways below plus a `<platform>_native_read` twin of each write-capable gateway. Use it for reporting, audits and clients that only allow read tools. A token without any `write:*` scope gets this list on `/mcp` too. |
 
-## Campaign lifecycle (cross-platform)
+Use `whathead_tool_help` (with `gateway` and `operation`) to get the exact input schema of any
+operation before calling it.
 
-| Tool | Purpose |
+## Gateways on `/mcp`
+
+### Read-only
+
+| Tool | Title |
 |---|---|
-| `list_campaigns` / `fetch_campaign` | List or fetch campaigns (with optional insights). |
-| `fetch_adsets` / `fetch_ads` / `fetch_creatives` | Drill into the campaign tree. |
-| `create_campaign` | Create a campaign (always paused; `dry_run` default). |
-| `create_adset` / `create_ad` / `create_creative` | Build the tree. |
-| `update_entities` | Update a campaign / ad set / ad (immutable fields guarded). |
-| `set_entity_status` | Enable / pause across platforms. |
-| `publish_campaign` | Activate a paused campaign (requires confirm). |
-| `delete_entity` | Delete an entity (requires `dry_run` + confirm). |
-| `compile_entity_payload` | Validate/compile a payload before you create. |
-| `get_entity_insights` | Stats for a specific campaign / ad set / ad. |
+| `whathead_tool_help` | Tool help |
+| `whathead_workspace` | Whathead workspace & accounts |
+| `clarity_native_action` | Microsoft Clarity |
+| `commerce_native_action` | Commerce stores |
 
-## Native platform tools
+### Read and write (annotated `destructiveHint: true`)
 
-One typed dispatcher per deep platform, reaching every documented endpoint:
-
-| Tool | Reaches |
+| Tool | Title |
 |---|---|
-| `meta_native_action` | 528 Meta Graph Marketing API endpoints |
-| `tiktok_native_action` | 377 TikTok Business API endpoints |
-| `snapchat_native_action` | 312 Snapchat Marketing API endpoints |
-| `amazon_native_action` | 184 Amazon Ads endpoints |
-| `apple_ads_native_action` | 73 Apple Search Ads endpoints |
+| `whathead_native_action` | Whathead campaigns, reporting & transfer |
+| `meta_native_action` | Meta Ads |
+| `google_ads_native_action` | Google Ads |
+| `tiktok_native_action` | TikTok Ads |
+| `snapchat_native_action` | Snapchat Ads |
+| `linkedin_native_action` | LinkedIn Ads |
+| `reddit_native_action` | Reddit Ads |
+| `x_ads_native_action` | X Ads |
+| `microsoft_ads_native_action` | Microsoft Advertising |
+| `dv360_native_action` | Display & Video 360 |
+| `criteo_native_action` | Criteo Retail Media |
+| `apple_ads_native_action` | Apple Ads |
+| `amazon_native_action` | Amazon Ads |
+| `ga4_native_action` | Google Analytics 4 |
+| `gtm_native_action` | Google Tag Manager |
+| `google_search_console_native_action` | Google Search Console |
+| `google_business_native_action` | Google Business Profile |
+| `google_merchant_native_action` | Google Merchant Center |
+| `adjust_native_action` | Adjust |
+| `appsflyer_native_action` | AppsFlyer |
+| `klaviyo_native_action` | Klaviyo |
 
-Plus per-platform **preflight** validators — e.g. `meta_launch_preflight`,
-`tiktok_launch_preflight`, `snapchat_describe_report_capabilities` — that check a launch or
-report request against platform rules before you commit.
+On `/mcp/read`, each of these 21 is replaced by its read-only twin, for example
+`meta_native_read` (title "Meta Ads (read-only)"). A twin accepts the same read operations and
+refuses anything that would create, change or delete.
 
-## Creative & media
+## Scopes
 
-| Tool | Purpose |
-|---|---|
-| `list_creatives` / `list_media_assets` | Browse creatives and reusable media. |
-| `platform_media_upload` | Upload media (signed URL, from URL, session, Google Drive). |
-| `generate_creative_design` | Generate AI image creatives from an ad, prompt, or catalog. |
-| `get_ad_preview` | Preview an ad before publishing. |
-| `search_ads_library` | Search the Meta Ads Library for competitor ads. |
-
-## Audiences & targeting
-
-| Tool | Purpose |
-|---|---|
-| `list_audiences` | Audiences, lookalikes, interests, locations. |
-| `estimate_audience_size` | Estimate reach of a targeting config. |
-| `generate_ad_content` / `suggest_targeting` | AI copy and targeting ideas. |
-| `plan_campaign_structure` | Preflight planner before a build. |
-
-## Reporting
-
-| Tool | Purpose |
-|---|---|
-| `get_performance_report` | Live cross-platform metrics (day / month / all). |
-| `audit_campaign` | Health check with a 0–100 score and findings. |
-| `get_optimization_suggestions` | Data-driven optimization recommendations. |
-| `export_report` | Export to CSV or Google Sheets. |
-| `get_reporting_*` (bootstrap/query/schedule/run) | Google Sheets reporting workflow. |
-
-## Signal (CDP)
-
-| Tool | Purpose |
-|---|---|
-| `signal_get_sites` / `signal_get_destinations` / `signal_get_connections` | Inventory. |
-| `signal_capi_setup_meta` / `_snap` / `_tiktok` | Create a server-side CAPI destination. |
-| `signal_capi_validate_event` / `_test_event` / `_route_event` | Validate, test, route events. |
-| `signal_capi_get_delivery_attempts` / `_retry_failed` / `_get_quality` | Delivery + quality. |
-| `signal_audit_site` / `signal_get_event_schema` | Site audit and event schema inference. |
-
-## Specialized platforms
-
-Dispatchers for Google Ads (`google_*_ops`), GA4 (`ga4_*`), DV360 (`dv360_action`),
-GTM (`gtm_ops`), Google Business Profile (`gmb_*_ops`), Search Console (`gsc_*_ops`),
-Adjust (`adjust_*`), Apple Search Ads legacy (`apple_ads_*_ops`), and e-commerce
-(`woocommerce_store_ops`, `shopify_store_ops`, `salla_store_ops`).
-
-## Cross-Platform Transfer
-
-| Tool | Purpose |
-|---|---|
-| `cross_platform_transfer` | Migrate a campaign from one platform to another. |
+Read operations need a `read:*` scope (`read:accounts`, `read:campaigns`, `read:reports`,
+`read:signal`, `read:gtm`). Writes need the matching `write:*` scope (`write:campaigns`,
+`write:signal`, `write:gtm`, `write:exports`). A client that requests no scope gets all of them.

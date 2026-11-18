@@ -1,17 +1,63 @@
 {
-  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-07-09/server.schema.json",
-  "name": "com.whathead/whathead-mcp",
-  "description": "Manage paid media across Meta, Google, TikTok, Snapchat, Amazon, Apple Search Ads and 15+ more platforms — plus server-side conversions — from any MCP client.",
-  "version": "1.0.0",
-  "websiteUrl": "https://whathead.com",
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "com.whathead/ads",
+  "title": "Whathead Ad Operations",
+  "description": "Build, edit, transfer and report on ad campaigns across Meta, Google, TikTok, Snapchat and 8 more.",
+  "version": "1.1.1",
+  "websiteUrl": "https://www.whathead.com",
   "repository": {
     "url": "https://github.com/SHAHINOOOO/whathead-mcp",
     "source": "github"
   },
+  "icons": [
+    {
+      "src": "https://www.whathead.com/logos/WhatheadLogo.png",
+      "mimeType": "image/png",
+      "sizes": [
+        "1024x1024"
+      ]
+    }
+  ],
   "remotes": [
     {
       "type": "streamable-http",
-      "url": "https://whathead.com/mcp"
+      "url": "https://www.whathead.com/mcp"
+    },
+    {
+      "type": "streamable-http",
+      "url": "https://www.whathead.com/mcp/read"
     }
-  ]
+  ],
+  "_meta": {
+    "io.modelcontextprotocol.registry/publisher-provided": {
+      "com.whathead": {
+        "authorization": "OAuth 2.1 (authorization code + PKCE, dynamic client registration). Bearer tokens for automation clients are minted in the Whathead workspace.",
+        "adPlatforms": [
+          "Meta",
+          "Google Ads",
+          "TikTok",
+          "Snapchat",
+          "LinkedIn",
+          "Reddit",
+          "X",
+          "Microsoft Advertising",
+          "Display & Video 360",
+          "Criteo",
+          "Apple Ads",
+          "Amazon Ads"
+        ],
+        "analyticsAndCommerce": [
+          "Google Analytics 4",
+          "Google Search Console",
+          "Shopify (workspace connection; not yet exposed as MCP tools)"
+        ],
+        "writeSafety": "Writes default to dry_run; live and destructive actions require explicit confirmation.",
+        "readOnlyEndpoint": "https://www.whathead.com/mcp/read lists only read-only tools (readOnlyHint: true): the 4 read-only compact tools plus a *_native_read twin of each write-capable gateway. Same OAuth server; tokens without write scopes get the same list on /mcp.",
+        "documentation": "https://docs.whathead.com/ai-assistant/connect",
+        "pricing": "https://www.whathead.com/pricing",
+        "privacyPolicy": "https://www.whathead.com/privacy-policy",
+        "security": "https://www.whathead.com/security-data"
+      }
+    }
+  }
 }

@@ -3,5 +3,5 @@
 
 ## Checklist
 - [ ] `bash scripts/validate.sh` passes
-- [ ] Endpoint URLs use `https://whathead.com/mcp`
+- [ ] Endpoint URLs use `https://www.whathead.com/mcp`
 - [ ] One logical change; docs are copy-paste-ready

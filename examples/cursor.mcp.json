@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "whathead": {
+      "url": "https://www.whathead.com/mcp",
+      "headers": {
+        "Authorization": "Bearer ${env:WHATHEAD_MCP_TOKEN}"
+      }
+    }
+  }
+}

@@ -2,22 +2,45 @@ name: validate
 
 on:
   push:
-    branches: [ main ]
   pull_request:
-  workflow_dispatch:
+
+permissions:
+  contents: read
 
 jobs:
-  validate:
+  manifests:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
 
-      - name: Validate JSON configs
-        run: |
-          for f in .mcp.json server.json; do
-            echo "Checking $f"
-            python3 -m json.tool "$f" > /dev/null
-          done
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
 
-      - name: Run repo validator
+      - name: Download published schemas
+        run: |
+          mkdir -p .schemas
+          curl -fsSL https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json -o .schemas/server.schema.json
+          curl -fsSL https://glama.ai/mcp/schemas/server.json -o .schemas/glama.schema.json
+
+      - name: Validate server.json (MCP Registry schema 2025-12-11)
+        run: npx --yes -p ajv-cli@5.0.0 -p ajv-formats@3.0.1 ajv validate --spec=draft7 --strict=false -c ajv-formats -s .schemas/server.schema.json -d server.json
+
+      - name: Validate glama.json
+        run: npx --yes -p ajv-cli@5.0.0 ajv validate --spec=draft7 --strict=false -s .schemas/glama.schema.json -d glama.json
+
+      - name: Endpoint answers with an OAuth challenge
+        run: |
+          code=$(curl -s -o /dev/null -w '%{http_code}' -X POST https://www.whathead.com/mcp \
+            -H 'Content-Type: application/json' -H 'Accept: application/json, text/event-stream' \
+            -d '{"jsonrpc":"2.0","id":1,"method":"initialize","params":{"protocolVersion":"2024-11-05","capabilities":{},"clientInfo":{"name":"ci","version":"0"}}}')
+          echo "initialize without a token returned HTTP $code"
+          test "$code" = "401"
+          curl -fsS https://www.whathead.com/.well-known/oauth-protected-resource | grep -q '"resource":"https://www.whathead.com/mcp"'
+
+  repo:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Endpoints and relative links
         run: bash scripts/validate.sh

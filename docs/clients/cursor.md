@@ -8,7 +8,7 @@ projects):
   "mcpServers": {
     "whathead": {
       "type": "http",
-      "url": "https://whathead.com/mcp"
+      "url": "https://www.whathead.com/mcp"
     }
   }
 }

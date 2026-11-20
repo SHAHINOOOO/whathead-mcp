@@ -5,7 +5,7 @@ operation lives at [docs.whathead.com/ai-assistant/tool-catalog](https://docs.wh
 
 | Endpoint | What `tools/list` shows |
 |---|---|
-| `https://www.whathead.com/mcp` | 25 compact gateways. Each takes an `operation` plus that operation's `arguments`. Writes default to `dry_run: true`; live and destructive actions need explicit confirmation. |
+| `https://www.whathead.com/mcp` | 25 compact gateways. Each takes an `operation` plus that operation's `arguments`. Ad-platform writes default to `dry_run: true` (Google Tag Manager writes have no dry run); live and destructive actions need explicit confirmation. |
 | `https://www.whathead.com/mcp/read` | 25 read-only tools (`readOnlyHint: true`): the 4 read-only gateways below plus a `<platform>_native_read` twin of each write-capable gateway. Use it for reporting, audits and clients that only allow read tools. A token without any `write:*` scope gets this list on `/mcp` too. |
 
 Use `whathead_tool_help` (with `gateway` and `operation`) to get the exact input schema of any

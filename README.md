@@ -6,12 +6,12 @@
 
 **One remote MCP server for the ad platforms your media plan actually buys.**
 
-<!-- Badges. Uncomment the Glama badge once https://glama.ai/mcp/connectors/com.whathead/ads resolves. -->
-<!-- [![Whathead MCP connector](https://glama.ai/mcp/connectors/com.whathead/ads/badges/score.svg)](https://glama.ai/mcp/connectors/com.whathead/ads) -->
+[![Whathead MCP connector](https://glama.ai/mcp/connectors/com.whathead/ads/badges/score.svg)](https://glama.ai/mcp/connectors/com.whathead/ads)
+[![MCP Badge](https://lobehub.com/badge/mcp/shahinoooo-whathead-mcp)](https://lobehub.com/mcp/shahinoooo-whathead-mcp)
 [![MCP Registry](https://img.shields.io/badge/MCP_Registry-com.whathead%2Fads-6E56CF)](https://registry.modelcontextprotocol.io/v0.1/servers?search=com.whathead)
 [![Transport](https://img.shields.io/badge/transport-Streamable_HTTP-1f6feb)](#connect)
 [![Auth](https://img.shields.io/badge/auth-OAuth_2.1_%2B_PKCE-2ea043)](#safety-model)
-[![Writes](https://img.shields.io/badge/writes-dry--run_by_default-f0883e)](#safety-model)
+[![Ad writes](https://img.shields.io/badge/ad_writes-dry--run_first-f0883e)](#safety-model)
 
 `https://www.whathead.com/mcp`
 
@@ -135,7 +135,7 @@ Letting an AI touch live ad accounts needs guardrails that do not depend on the 
 
 | Guardrail | How it works |
 |---|---|
-| Dry run by default | Write tools default to `dry_run: true` and return the exact payload or diff they would send. Nothing changes until a call is made with `dry_run: false`. |
+| Dry run first on ad platforms | Ad-platform write tools default to `dry_run: true` and return the exact payload or diff they would send. Nothing changes until the call is resent with `dry_run: false`. Google Tag Manager writes have no dry run, so they rely on explicit confirmation and workspace versions. |
 | Explicit confirmation | Publishing and destructive actions also require `confirmed: true`. Google Ads actions carry a per-action confirmation flag. |
 | Paused by default | Cross-platform transfers create paused entities unless you choose to publish after confirmation. |
 | Idempotency | Writes accept an `idempotency_key`, so a retried call does not create duplicates. |

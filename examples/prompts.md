@@ -1,6 +1,6 @@
 # Example prompts for Whathead MCP
 
-These work in Claude, ChatGPT, Cursor, VS Code and any MCP client connected to `https://www.whathead.com/mcp`. Replace account names with your own. Every write below is phrased to run as a dry run first: Whathead write tools default to `dry_run: true`, and publishing or deleting needs an explicit confirmation.
+These work in Claude, ChatGPT, Cursor, VS Code and any MCP client connected to `https://www.whathead.com/mcp`. Replace account names with your own. Every write below is phrased to run as a dry run first: Whathead ad-platform write tools default to `dry_run: true` (Google Tag Manager writes have no dry run), and publishing or deleting needs an explicit confirmation.
 
 ## Orientation
 

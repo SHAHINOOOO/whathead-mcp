@@ -5,10 +5,11 @@ of an accidental spend change or deletion.
 
 ## The write protocol
 
-1. **Dry run by default.** Every mutating tool (`create_*`, `update_entities`,
-   `set_entity_status`, `delete_entity`, `cross_platform_transfer`, …) runs with
+1. **Dry run first on ad platforms.** Ad-platform mutating tools (`create_*`, `update_entities`,
+   `set_entity_status`, `delete_entity`, `cross_platform_transfer`, …) run with
    `dry_run: true` unless you explicitly set it to `false`. A dry run returns exactly what
-   *would* change, without changing anything.
+   *would* change, without changing anything. Google Tag Manager writes are the exception:
+   they have no dry run, so they go through explicit confirmation and GTM workspace versions.
 2. **Explicit confirm for destructive actions.** Deleting an entity, copying media between
    accounts, or publishing a campaign additionally requires `confirmed: true`. The assistant
    has to surface the change and get your "yes" first.
@@ -20,8 +21,10 @@ of an accidental spend change or deletion.
 
 ## Created paused
 
-Campaigns are **always created in a paused state**. Going live is a separate, explicit
-`publish_campaign` / `set_entity_status` step that you control.
+Campaigns created with `create_campaign` and entities copied with `cross_platform_transfer`
+start **paused**. Going live is a separate, explicit `publish_campaign` / `set_entity_status`
+step that you control. Native platform actions use the status you pass, so set it explicitly
+(TikTok, for example, defaults new entities to enabled).
 
 ## Permissions
 
